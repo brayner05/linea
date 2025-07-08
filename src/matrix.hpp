@@ -1,5 +1,6 @@
 #ifndef LINEA_MATRIX_HPP
 #define LINEA_MATRIX_HPP
+
 #include <cstdint>
 #include <utility>
 #include <stdexcept>
@@ -24,8 +25,10 @@ namespace linea {
         template <u32 CC>
         Matrix<R, CC> operator*(const Matrix<C, CC>& mat) const;
 
-        Matrix<R, C> operator+=(const Matrix<R, C>& mat);
-        Matrix<R, C> operator-=(const Matrix<R, C>& mat);
+        Matrix<R, C>& operator+=(const Matrix<R, C>& mat);
+        Matrix<R, C>& operator-=(const Matrix<R, C>& mat);
+        Matrix<R, C>& operator*=(double scalar);
+        Matrix<R, C>& operator/=(double scalar);
     };
 
 
@@ -76,24 +79,53 @@ namespace linea {
         return this->data[row][col];
     }
 
-    
+
     template <u32 R, u32 C>
-    Matrix<R, C> Matrix<R, C>::operator+=(const Matrix<R, C>& mat) {
+    Matrix<R, C>& Matrix<R, C>::operator+=(const Matrix<R, C>& mat) {
         for (u32 i = 0; i < R; ++i) {
             for (u32 j = 0; j < C; ++j) {
                 this->data[i][j] += mat.data[i][j];
             }
         }
+        return *this;
     }
 
 
     template <u32 R, u32 C>
-    Matrix<R, C> Matrix<R, C>::operator-=(const Matrix<R, C>& mat) {
+    Matrix<R, C>& Matrix<R, C>::operator-=(const Matrix<R, C>& mat) {
         for (u32 i = 0; i < R; ++i) {
             for (u32 j = 0; j < C; ++j) {
                 this->data[i][j] -= mat.data[i][j];
             }
         }
+        return *this;
+    }
+
+
+    template <u32 R, u32 C>
+    Matrix<R, C>& Matrix<R, C>::operator*=(double scalar) {
+        for (u32 i = 0; i < R; ++i) {
+            for (u32 j = 0; j < C; ++j) {
+                this->data[i][j] *= scalar;
+            }
+        }
+        return *this;
+    }
+
+
+    template <u32 R, u32 C>
+    Matrix<R, C>& Matrix<R, C>::operator/=(double scalar) {
+        if (scalar == 0) {
+            throw std::runtime_error("Cannot divide by 0.");
+        }
+
+        for (u32 i = 0; i < R; ++i) {
+            for (u32 j = 0; j < C; ++j) {
+                this->data[i][j] /= scalar;
+            }
+        }
+
+        return *this;
     }
 
 
@@ -106,6 +138,26 @@ namespace linea {
 
     template <u32 R, u32 C>
     Matrix<R, C> operator-(Matrix<R, C> M1, const Matrix<R, C>& M2) {
+        M1 -= M2;
+        return M1;
+    }
+
+
+    template <u32 R, u32 C>
+    Matrix<R, C> operator*(Matrix<R, C> M, double scalar) {
+        M *= scalar;
+        return M;
+    }
+
+
+    template <u32 R, u32 C>
+    Matrix<R, C> operator*(double scalar, Matrix<R, C> M) {
+        return M * scalar;
+    }
+
+
+    template <u32 R, u32 C>
+    Matrix<R, C> operator/(Matrix<R, C> M1, const Matrix<R, C>& M2) {
         M1 -= M2;
         return M1;
     }

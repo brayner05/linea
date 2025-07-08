@@ -1,5 +1,6 @@
 #ifndef LINEA_VECTOR_HPP
 #define LINEA_VECTOR_HPP
+
 #include "matrix.hpp"
 
 
@@ -22,7 +23,68 @@ namespace linea {
                 this->at({2, 0}) * other.at({2, 0})
             );
         }
+
+        inline Vector3& operator+=(const Vector3& v) {
+            this->x() += v.at({0, 0});
+            this->y() += v.at({1, 0});
+            this->z() += v.at({2, 0});
+            return *this;
+        }
+
+        Vector3& operator-=(const Vector3& v) {
+            this->x() -= v.at({0, 0});
+            this->y() -= v.at({1, 0});
+            this->z() -= v.at({2, 0});
+            return *this;
+        }
+
+        Vector3& operator*=(double scalar) {
+            this->x() *= scalar;
+            this->y() *= scalar;
+            this->z() *= scalar;
+            return *this;
+        }
+
+        Vector3& operator/=(double scalar) {
+            if (scalar == 0) {
+                throw std::runtime_error("Cannot divide by 0.");
+            }
+
+            this->x() /= scalar;
+            this->y() /= scalar;
+            this->z() /= scalar;
+
+            return *this;
+        }
     };
+
+
+    Vector3 operator+(Vector3 v, const Vector3& u) {
+        v += u;
+        return v;
+    }
+
+
+    Vector3 operator-(Vector3 v, const Vector3& u) {
+        v -= u;
+        return v;
+    }
+
+
+    Vector3 operator*(Vector3 v, double scalar) {
+        return v *= scalar;
+    }
+
+
+    Vector3 operator*(double scalar, Vector3 v) {
+        return v * scalar;
+    }
+
+
+    Vector3 operator/(Vector3 v, double scalar) {
+        return v /= scalar;
+    }
+
 
     template <u32 R>
     class Vector : public Matrix<R, 1> {
