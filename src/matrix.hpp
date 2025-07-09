@@ -125,6 +125,18 @@ namespace linea {
 
 
     template <u32 R, u32 C>
+    bool operator==(const Matrix<R, C>& M, const Matrix<R, C>& N) {
+        for (u32 i = 0; i < R; ++i) {
+            for (u32 j = 0; j < C; ++j) {
+                if (M.at(i, j) != N.at(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    template <u32 R, u32 C>
     Matrix<R, C>& Matrix<R, C>::operator+=(const Matrix<R, C>& mat) {
         for (u32 i = 0; i < R; ++i) {
             for (u32 j = 0; j < C; ++j) {
@@ -202,7 +214,7 @@ namespace linea {
 
     template <u32 R, u32 C>
     Matrix<R, C> operator/(Matrix<R, C> M1, const Matrix<R, C>& M2) {
-        M1 -= M2;
+        M1 /= M2;
         return M1;
     }
 
