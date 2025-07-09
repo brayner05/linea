@@ -1,6 +1,6 @@
 # Compiler variables
 CXX =	g++
-CXXFLAGS =	-g -Wall -Werror -Wextra
+CXXFLAGS =	-g -Wall -Werror -Wextra -std=c++20
 INCLUDES =	
 LIBRARIES =	
 

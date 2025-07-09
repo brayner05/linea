@@ -27,6 +27,8 @@ namespace linea {
         /// @param values An R x C list of double values to assign the the matrix.
         Matrix(std::initializer_list<std::initializer_list<double>> values);
 
+        static Matrix<R, R> identity() requires (R == C);
+
         /// @brief Gets the value at a given entry of the matrix.
         /// @param indices An ordered pair of indices (a, b) such that \f$ 0 <= a < R \f$ and \f$ 0 <= B < C \f$.
         /// @return The entry at M_{a,b}.
@@ -52,6 +54,16 @@ namespace linea {
 
         std::string to_string() const;
     };
+
+
+    template <u32 R, u32 C>
+    Matrix<R, R> Matrix<R, C>::identity() requires (R == C) {
+        Matrix<R, R> result;
+        for (u32 i = 0; i < R; ++i) {
+            result[{i, i}] = 1.0;
+        }
+        return result;
+    }
 
 
     template <u32 R, u32 C>

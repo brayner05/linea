@@ -4,6 +4,6 @@
 #include "vector.hpp"
 
 int main() {
-    auto v = linea::Vector3 { 1, 2, 3 };
-    std::cout << v.normalize().to_string() << "\n";
+    auto m = linea::Matrix<4, 4>::identity();
+    std::cout << m.to_string() << '\n';
 }
