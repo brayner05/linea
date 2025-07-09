@@ -1,0 +1,232 @@
+\hypertarget{matrix_8hpp_source}{}\doxysection{matrix.\+hpp}
+\label{matrix_8hpp_source}\index{src/matrix.hpp@{src/matrix.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef LINEA\_MATRIX\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define LINEA\_MATRIX\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }linea \{}
+\DoxyCodeLine{11     \textcolor{keyword}{using }u32 = std::uint32\_t;}
+\DoxyCodeLine{12     \textcolor{keyword}{using }i32 = std::int32\_t;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{17     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{18     \textcolor{keyword}{class }\mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}} \{}
+\DoxyCodeLine{19     \textcolor{keyword}{private}:}
+\DoxyCodeLine{20         \textcolor{keywordtype}{double} data[R][C] \{\};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{keyword}{public}:}
+\DoxyCodeLine{24         \mbox{\hyperlink{classlinea_1_1Matrix_a6607b1d659f8f016f698fbdbe4cb114a}{Matrix}}();}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{28         \mbox{\hyperlink{classlinea_1_1Matrix_aea35ded00f89a08a97b5ff9458bee79a}{Matrix}}(std::initializer\_list<std::initializer\_list<double>> values);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{33         \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classlinea_1_1Matrix_aa2bc63f172eb625e355cd02cf99bbf59}{operator[]}}(\textcolor{keyword}{const} std::pair<u32, u32>\& indices);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{38         \textcolor{keywordtype}{double} \mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\textcolor{keyword}{const} std::pair<u32, u32>\& indices) \textcolor{keyword}{const};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43         \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<C, R>}} \mbox{\hyperlink{classlinea_1_1Matrix_a653e10cfbd733b5bf5daa9a604bcf12d}{transpose}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45         \textcolor{keyword}{template} <u32 CC>}
+\DoxyCodeLine{46         \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, CC>}} operator*(\textcolor{keyword}{const} \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<C, CC>}}\& mat) \textcolor{keyword}{const};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48         \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>}}\& operator+=(\textcolor{keyword}{const} \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>}}\& mat);}
+\DoxyCodeLine{49         \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>}}\& operator-\/=(\textcolor{keyword}{const} \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>}}\& mat);}
+\DoxyCodeLine{50         \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>}}\& operator*=(\textcolor{keywordtype}{double} scalar);}
+\DoxyCodeLine{51         \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>}}\& operator/=(\textcolor{keywordtype}{double} scalar);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         std::string to\_string() \textcolor{keyword}{const};}
+\DoxyCodeLine{54     \};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{58     \mbox{\hyperlink{classlinea_1_1Matrix_a6607b1d659f8f016f698fbdbe4cb114a}{Matrix<R, C>::Matrix}}() \{}
+\DoxyCodeLine{59         \textcolor{keywordflow}{for} (u32 i = 0; i < R; ++i) \{}
+\DoxyCodeLine{60             \textcolor{keywordflow}{for} (u32 j = 0; j < C; ++j) \{}
+\DoxyCodeLine{61                 this-\/>data[i][j] = 0;}
+\DoxyCodeLine{62             \}}
+\DoxyCodeLine{63         \}}
+\DoxyCodeLine{64     \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{68     \mbox{\hyperlink{classlinea_1_1Matrix_a6607b1d659f8f016f698fbdbe4cb114a}{Matrix<R, C>::Matrix}}(std::initializer\_list<std::initializer\_list<double>> values) \{}
+\DoxyCodeLine{69         \textcolor{keyword}{auto} input\_rows = values.size();}
+\DoxyCodeLine{70         \textcolor{keyword}{auto} input\_cols = values.begin()-\/>size();}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72         \textcolor{keywordflow}{if} (input\_rows != R || input\_cols != C) \{}
+\DoxyCodeLine{73             std::ostringstream os;}
+\DoxyCodeLine{74             os << \textcolor{stringliteral}{"{}Cannot initialize a "{}} << R << \textcolor{stringliteral}{"{}x"{}} << C << \textcolor{stringliteral}{"{} matrix "{}};}
+\DoxyCodeLine{75             os << \textcolor{stringliteral}{"{}with initializer\_list of size "{}} << input\_rows << \textcolor{stringliteral}{"{}x"{}} << input\_cols << \textcolor{stringliteral}{"{}."{}};}
+\DoxyCodeLine{76             \textcolor{keywordflow}{throw} std::runtime\_error(os.str());}
+\DoxyCodeLine{77         \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79         u32 row\_idx = 0;}
+\DoxyCodeLine{80         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} row = values.begin(); row != values.end(); ++row, ++row\_idx) \{}
+\DoxyCodeLine{81             u32 col\_idx = 0;}
+\DoxyCodeLine{82             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} col = row-\/>begin(); col != row-\/>end(); ++col, ++col\_idx) \{}
+\DoxyCodeLine{83                 this-\/>data[row\_idx][col\_idx] = *col;}
+\DoxyCodeLine{84             \}}
+\DoxyCodeLine{85         \}}
+\DoxyCodeLine{86     \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{90     \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classlinea_1_1Matrix_aa2bc63f172eb625e355cd02cf99bbf59}{Matrix<R, C>::operator[]}}(\textcolor{keyword}{const} std::pair<u32, u32>\& indices) \{}
+\DoxyCodeLine{91         \textcolor{keyword}{const} \textcolor{keyword}{auto} row = indices.first;}
+\DoxyCodeLine{92         \textcolor{keyword}{const} \textcolor{keyword}{auto} col = indices.second;}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94         \textcolor{keywordflow}{if} (row >= R || col >= C) \{}
+\DoxyCodeLine{95             \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Matrix indices out of bounds."{}});}
+\DoxyCodeLine{96         \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98         \textcolor{keywordflow}{return} this-\/>data[row][col];}
+\DoxyCodeLine{99     \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{103     \textcolor{keywordtype}{double} \mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{Matrix<R, C>::at}}(\textcolor{keyword}{const} std::pair<u32, u32>\& indices)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{104         \textcolor{keyword}{const} \textcolor{keyword}{auto} row = indices.first;}
+\DoxyCodeLine{105         \textcolor{keyword}{const} \textcolor{keyword}{auto} col = indices.second;}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107         \textcolor{keywordflow}{if} (row >= R || col >= C) \{}
+\DoxyCodeLine{108             \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Matrix indices out of bounds."{}});}
+\DoxyCodeLine{109         \}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111         \textcolor{keywordflow}{return} this-\/>data[row][col];}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{116     \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<C, R>}} \mbox{\hyperlink{classlinea_1_1Matrix_a653e10cfbd733b5bf5daa9a604bcf12d}{Matrix<R, C>::transpose}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{117         \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<C, R>}} transposed \{\};}
+\DoxyCodeLine{118         \textcolor{keywordflow}{for} (u32 i = 0; i < R; ++i) \{}
+\DoxyCodeLine{119             \textcolor{keywordflow}{for} (u32 j = 0; j < C; ++j) \{}
+\DoxyCodeLine{120                 transposed[\{j, i\}] = this-\/>at(\{i, j\});}
+\DoxyCodeLine{121             \}}
+\DoxyCodeLine{122         \}}
+\DoxyCodeLine{123         \textcolor{keywordflow}{return} transposed;}
+\DoxyCodeLine{124     \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{128     \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>}}\& \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>::operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<R, C>}}\& mat) \{}
+\DoxyCodeLine{129         \textcolor{keywordflow}{for} (u32 i = 0; i < R; ++i) \{}
+\DoxyCodeLine{130             \textcolor{keywordflow}{for} (u32 j = 0; j < C; ++j) \{}
+\DoxyCodeLine{131                 this-\/>data[i][j] += mat.data[i][j];}
+\DoxyCodeLine{132             \}}
+\DoxyCodeLine{133         \}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{135     \}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{139     Matrix<R, C>\& Matrix<R, C>::operator-\/=(\textcolor{keyword}{const} Matrix<R, C>\& mat) \{}
+\DoxyCodeLine{140         \textcolor{keywordflow}{for} (u32 i = 0; i < R; ++i) \{}
+\DoxyCodeLine{141             \textcolor{keywordflow}{for} (u32 j = 0; j < C; ++j) \{}
+\DoxyCodeLine{142                 this-\/>data[i][j] -\/= mat.data[i][j];}
+\DoxyCodeLine{143             \}}
+\DoxyCodeLine{144         \}}
+\DoxyCodeLine{145         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{146     \}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{150     Matrix<R, C>\& Matrix<R, C>::operator*=(\textcolor{keywordtype}{double} scalar) \{}
+\DoxyCodeLine{151         \textcolor{keywordflow}{for} (u32 i = 0; i < R; ++i) \{}
+\DoxyCodeLine{152             \textcolor{keywordflow}{for} (u32 j = 0; j < C; ++j) \{}
+\DoxyCodeLine{153                 this-\/>data[i][j] *= scalar;}
+\DoxyCodeLine{154             \}}
+\DoxyCodeLine{155         \}}
+\DoxyCodeLine{156         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{157     \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{161     Matrix<R, C>\& Matrix<R, C>::operator/=(\textcolor{keywordtype}{double} scalar) \{}
+\DoxyCodeLine{162         \textcolor{keywordflow}{if} (scalar == 0) \{}
+\DoxyCodeLine{163             \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Cannot divide by 0."{}});}
+\DoxyCodeLine{164         \}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166         \textcolor{keywordflow}{for} (u32 i = 0; i < R; ++i) \{}
+\DoxyCodeLine{167             \textcolor{keywordflow}{for} (u32 j = 0; j < C; ++j) \{}
+\DoxyCodeLine{168                 this-\/>data[i][j] /= scalar;}
+\DoxyCodeLine{169             \}}
+\DoxyCodeLine{170         \}}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{173     \}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{177     Matrix<R, C> operator+(Matrix<R, C> M1, \textcolor{keyword}{const} Matrix<R, C>\& M2) \{}
+\DoxyCodeLine{178         M1 += M2;}
+\DoxyCodeLine{179         \textcolor{keywordflow}{return} M1;}
+\DoxyCodeLine{180     \}}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{184     Matrix<R, C> operator-\/(Matrix<R, C> M1, \textcolor{keyword}{const} Matrix<R, C>\& M2) \{}
+\DoxyCodeLine{185         M1 -\/= M2;}
+\DoxyCodeLine{186         \textcolor{keywordflow}{return} M1;}
+\DoxyCodeLine{187     \}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{191     Matrix<R, C> operator*(Matrix<R, C> M, \textcolor{keywordtype}{double} scalar) \{}
+\DoxyCodeLine{192         M *= scalar;}
+\DoxyCodeLine{193         \textcolor{keywordflow}{return} M;}
+\DoxyCodeLine{194     \}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{198     Matrix<R, C> operator*(\textcolor{keywordtype}{double} scalar, Matrix<R, C> M) \{}
+\DoxyCodeLine{199         \textcolor{keywordflow}{return} M * scalar;}
+\DoxyCodeLine{200     \}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{204     Matrix<R, C> operator/(Matrix<R, C> M1, \textcolor{keyword}{const} Matrix<R, C>\& M2) \{}
+\DoxyCodeLine{205         M1 -\/= M2;}
+\DoxyCodeLine{206         \textcolor{keywordflow}{return} M1;}
+\DoxyCodeLine{207     \}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{211     \textcolor{keyword}{template} <u32 CC>}
+\DoxyCodeLine{212     Matrix<R, CC> Matrix<R, C>::operator*(\textcolor{keyword}{const} Matrix<C, CC>\& mat)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{213         Matrix<R, CC> output \{\};}
+\DoxyCodeLine{214         \textcolor{keywordflow}{for} (u32 i = 0; i < R; ++i) \{}
+\DoxyCodeLine{215             \textcolor{keywordflow}{for} (u32 j = 0; j < CC; ++j) \{}
+\DoxyCodeLine{216                 \textcolor{keywordtype}{double} sum = 0;}
+\DoxyCodeLine{217                 \textcolor{keywordflow}{for} (u32 k = 0; k < C; ++k) \{}
+\DoxyCodeLine{218                     sum += this-\/>data[i][k] * mat.at(\{k, j\});}
+\DoxyCodeLine{219                 \}}
+\DoxyCodeLine{220                 output[\{i, j\}] = sum;}
+\DoxyCodeLine{221             \}}
+\DoxyCodeLine{222         \}}
+\DoxyCodeLine{223         \textcolor{keywordflow}{return} output;}
+\DoxyCodeLine{224     \}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227     \textcolor{keyword}{template} <u32 R, u32 C>}
+\DoxyCodeLine{228     std::string Matrix<R, C>::to\_string()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{229         std::ostringstream os;}
+\DoxyCodeLine{230         \textcolor{keywordflow}{for} (u32 row = 0; row < R; ++row) \{}
+\DoxyCodeLine{231             os << \textcolor{stringliteral}{"{}[ "{}};}
+\DoxyCodeLine{232             \textcolor{keywordflow}{for} (u32 col = 0; col < C; ++col) \{}
+\DoxyCodeLine{233                 os << this-\/>at(\{row, col\}) << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{234             \}}
+\DoxyCodeLine{235             os << \textcolor{stringliteral}{"{}]"{}} << (row == R -\/ 1 ? \textcolor{stringliteral}{"{}"{}} : \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{236         \}}
+\DoxyCodeLine{237         \textcolor{keywordflow}{return} os.str();}
+\DoxyCodeLine{238     \}}
+\DoxyCodeLine{239 \}}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

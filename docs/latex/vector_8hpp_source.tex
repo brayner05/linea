@@ -1,0 +1,102 @@
+\hypertarget{vector_8hpp_source}{}\doxysection{vector.\+hpp}
+\label{vector_8hpp_source}\index{src/vector.hpp@{src/vector.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef LINEA\_VECTOR\_HPP}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define LINEA\_VECTOR\_HPP}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}matrix.hpp"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }linea \{}
+\DoxyCodeLine{10     \textcolor{keyword}{class }\mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}} : \textcolor{keyword}{public} \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}<3, 1> \{}
+\DoxyCodeLine{11     \textcolor{keyword}{public}:}
+\DoxyCodeLine{12         \textcolor{keyword}{inline} \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}(\textcolor{keywordtype}{double} xx, \textcolor{keywordtype}{double} yy, \textcolor{keywordtype}{double} zz) }
+\DoxyCodeLine{13             : \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix<3, 1>}}\{\{xx\}, \{yy\}, \{zz\}\} \{\}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15         \textcolor{keyword}{inline} \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}() : \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}(0, 0, 0) \{\}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17         \textcolor{keyword}{inline} \textcolor{keywordtype}{double}\& x() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classlinea_1_1Matrix_aa2bc63f172eb625e355cd02cf99bbf59}{operator[]}}(\{0, 0\}); \}}
+\DoxyCodeLine{18         \textcolor{keyword}{inline} \textcolor{keywordtype}{double}\& y() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classlinea_1_1Matrix_aa2bc63f172eb625e355cd02cf99bbf59}{operator[]}}(\{1, 0\}); \}}
+\DoxyCodeLine{19         \textcolor{keyword}{inline} \textcolor{keywordtype}{double}\& z() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classlinea_1_1Matrix_aa2bc63f172eb625e355cd02cf99bbf59}{operator[]}}(\{2, 0\}); \}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} dot(\textcolor{keyword}{const} \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{22             \textcolor{keywordflow}{return} (}
+\DoxyCodeLine{23                 this-\/>\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{0, 0\}) * other.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{0, 0\}) + }
+\DoxyCodeLine{24                 this-\/>at(\{1, 0\}) * other.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{1, 0\}) + }
+\DoxyCodeLine{25                 this-\/>at(\{2, 0\}) * other.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{2, 0\})}
+\DoxyCodeLine{26             );}
+\DoxyCodeLine{27         \}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29         \textcolor{keyword}{inline} \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}\& operator+=(\textcolor{keyword}{const} \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}\& v) \{}
+\DoxyCodeLine{30             this-\/>x() += v.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{0, 0\});}
+\DoxyCodeLine{31             this-\/>y() += v.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{1, 0\});}
+\DoxyCodeLine{32             this-\/>z() += v.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{2, 0\});}
+\DoxyCodeLine{33             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{34         \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36         \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}\& operator-\/=(\textcolor{keyword}{const} \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}\& v) \{}
+\DoxyCodeLine{37             this-\/>x() -\/= v.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{0, 0\});}
+\DoxyCodeLine{38             this-\/>y() -\/= v.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{1, 0\});}
+\DoxyCodeLine{39             this-\/>z() -\/= v.\mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}}(\{2, 0\});}
+\DoxyCodeLine{40             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{41         \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43         \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}\& operator*=(\textcolor{keywordtype}{double} scalar) \{}
+\DoxyCodeLine{44             this-\/>x() *= scalar;}
+\DoxyCodeLine{45             this-\/>y() *= scalar;}
+\DoxyCodeLine{46             this-\/>z() *= scalar;}
+\DoxyCodeLine{47             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{48         \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50         \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}\& operator/=(\textcolor{keywordtype}{double} scalar) \{}
+\DoxyCodeLine{51             \textcolor{keywordflow}{if} (scalar == 0) \{}
+\DoxyCodeLine{52                 \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Cannot divide by 0."{}});}
+\DoxyCodeLine{53             \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55             this-\/>x() /= scalar;}
+\DoxyCodeLine{56             this-\/>y() /= scalar;}
+\DoxyCodeLine{57             this-\/>z() /= scalar;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{60         \}}
+\DoxyCodeLine{61     \};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64     \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}} operator+(\mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}} v, \textcolor{keyword}{const} \mbox{\hyperlink{classlinea_1_1Vector3}{Vector3}}\& u) \{}
+\DoxyCodeLine{65         v += u;}
+\DoxyCodeLine{66         \textcolor{keywordflow}{return} v;}
+\DoxyCodeLine{67     \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     Vector3 operator-\/(Vector3 v, \textcolor{keyword}{const} Vector3\& u) \{}
+\DoxyCodeLine{71         v -\/= u;}
+\DoxyCodeLine{72         \textcolor{keywordflow}{return} v;}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     Vector3 operator*(Vector3 v, \textcolor{keywordtype}{double} scalar) \{}
+\DoxyCodeLine{77         \textcolor{keywordflow}{return} v *= scalar;}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81     Vector3 operator*(\textcolor{keywordtype}{double} scalar, Vector3 v) \{}
+\DoxyCodeLine{82         \textcolor{keywordflow}{return} v * scalar;}
+\DoxyCodeLine{83     \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     Vector3 operator/(Vector3 v, \textcolor{keywordtype}{double} scalar) \{}
+\DoxyCodeLine{87         \textcolor{keywordflow}{return} v /= scalar;}
+\DoxyCodeLine{88     \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{keyword}{template} <u32 R>}
+\DoxyCodeLine{92     \textcolor{keyword}{class }\mbox{\hyperlink{classlinea_1_1Vector}{Vector}} : \textcolor{keyword}{public} \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}<R, 1> \{}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \};}
+\DoxyCodeLine{95 \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

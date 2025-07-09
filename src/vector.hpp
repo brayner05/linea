@@ -1,10 +1,13 @@
 #ifndef LINEA_VECTOR_HPP
 #define LINEA_VECTOR_HPP
 
+#include <cmath>
 #include "matrix.hpp"
 
 
 namespace linea {
+    /// @brief Class representing a 3D vector. A sub-class of Matrix<3,1>,
+    /// allowing for any matrix methods to be called on a Vector3.
     class Vector3 : public Matrix<3, 1> {
     public:
         inline Vector3(double xx, double yy, double zz) 
@@ -15,6 +18,28 @@ namespace linea {
         inline double& x() { return this->operator[]({0, 0}); }
         inline double& y() { return this->operator[]({1, 0}); }
         inline double& z() { return this->operator[]({2, 0}); }
+
+        inline double get_x() const { return this->at({0, 0}); }
+        inline double get_y() const { return this->at({1, 0}); }
+        inline double get_z() const { return this->at({2, 0}); }
+
+        inline double magnitude() const { 
+            auto x = this->get_x();
+            auto y = this->get_y();
+            auto z = this->get_y();
+            return std::sqrt(x * x + y * y + z * z);
+        }
+
+
+        inline Vector3 normalize() const {
+            auto length = this->magnitude();
+            return Vector3 { 
+                this->get_x() / length, 
+                this->get_y() / length, 
+                this->get_z() / length 
+            };
+        };
+
 
         inline double dot(const Vector3& other) const {
             return (

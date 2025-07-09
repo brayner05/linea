@@ -68,6 +68,10 @@ clean:
 	$(call success_message,"Clean complete")
 
 
-.PHONY: clean
+docs:
+	doxygen
 
+
+.PHONY: clean
+.PHONEY: docs
 

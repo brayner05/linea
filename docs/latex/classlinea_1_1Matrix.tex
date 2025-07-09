@@ -1,0 +1,136 @@
+\hypertarget{classlinea_1_1Matrix}{}\doxysection{linea\+::Matrix\texorpdfstring{$<$}{<} R, C \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classlinea_1_1Matrix}\index{linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}}
+
+
+An R x C \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}} of doubles.  
+
+
+
+
+{\ttfamily \#include $<$matrix.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classlinea_1_1Matrix_a6607b1d659f8f016f698fbdbe4cb114a}\label{classlinea_1_1Matrix_a6607b1d659f8f016f698fbdbe4cb114a}} 
+{\bfseries Matrix} ()
+\begin{DoxyCompactList}\small\item\em Generates an R x C matrix full of 0\textquotesingle{}s. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classlinea_1_1Matrix_aea35ded00f89a08a97b5ff9458bee79a}{Matrix}} (std\+::initializer\+\_\+list$<$ std\+::initializer\+\_\+list$<$ double $>$ $>$ values)
+\begin{DoxyCompactList}\small\item\em Creates an R x C matrix and allows the values to be defined explicitly. \end{DoxyCompactList}\item 
+double \& \mbox{\hyperlink{classlinea_1_1Matrix_aa2bc63f172eb625e355cd02cf99bbf59}{operator\mbox{[}$\,$\mbox{]}}} (const std\+::pair$<$ u32, u32 $>$ \&indices)
+\begin{DoxyCompactList}\small\item\em Gets the value at a given entry of the matrix. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}{at}} (const std\+::pair$<$ u32, u32 $>$ \&indices) const
+\begin{DoxyCompactList}\small\item\em Gets a copy of the value at a given entry of the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ C, R $>$ \mbox{\hyperlink{classlinea_1_1Matrix_a653e10cfbd733b5bf5daa9a604bcf12d}{transpose}} () const
+\begin{DoxyCompactList}\small\item\em Gets the transpose of the matrix. That is, for this matrix M, M.\+transpose() is the matrix N such that for every i,j, $ N_{i,j} = M_{j, i} $. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classlinea_1_1Matrix_a45fa8da14112c840f0455024d9fe3448}\label{classlinea_1_1Matrix_a45fa8da14112c840f0455024d9fe3448}} 
+{\footnotesize template$<$u32 CC$>$ }\\\mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ R, CC $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ C, CC $>$ \&mat) const
+\item 
+\mbox{\Hypertarget{classlinea_1_1Matrix_a18cacb72f7991b75cd7623a254e08d39}\label{classlinea_1_1Matrix_a18cacb72f7991b75cd7623a254e08d39}} 
+\mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ R, C $>$ \& {\bfseries operator+=} (const \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ R, C $>$ \&mat)
+\item 
+\mbox{\Hypertarget{classlinea_1_1Matrix_a6353ff2537851b2d30e2e59960df04fa}\label{classlinea_1_1Matrix_a6353ff2537851b2d30e2e59960df04fa}} 
+\mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ R, C $>$ \& {\bfseries operator-\/=} (const \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ R, C $>$ \&mat)
+\item 
+\mbox{\Hypertarget{classlinea_1_1Matrix_a4220adb236bffcc373aec4cb2569a3f4}\label{classlinea_1_1Matrix_a4220adb236bffcc373aec4cb2569a3f4}} 
+\mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ R, C $>$ \& {\bfseries operator$\ast$=} (double scalar)
+\item 
+\mbox{\Hypertarget{classlinea_1_1Matrix_a8b098355f68a3d6ba93a60d986d1201b}\label{classlinea_1_1Matrix_a8b098355f68a3d6ba93a60d986d1201b}} 
+\mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ R, C $>$ \& {\bfseries operator/=} (double scalar)
+\item 
+\mbox{\Hypertarget{classlinea_1_1Matrix_a281316089af521a2a42fe4cb0d58a88c}\label{classlinea_1_1Matrix_a281316089af521a2a42fe4cb0d58a88c}} 
+std\+::string {\bfseries to\+\_\+string} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$u32 R, u32 C$>$\newline
+class linea\+::\+Matrix$<$ R, C $>$}
+An R x C \mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}} of doubles. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em R} & The number of rows. \\
+\hline
+{\em C} & The number of columns. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classlinea_1_1Matrix_aea35ded00f89a08a97b5ff9458bee79a}\label{classlinea_1_1Matrix_aea35ded00f89a08a97b5ff9458bee79a}} 
+\index{linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}}
+{\footnotesize\ttfamily template$<$u32 R, u32 C$>$ \\
+\mbox{\hyperlink{classlinea_1_1Matrix}{linea\+::\+Matrix}}$<$ R, C $>$\+::\+Matrix (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ std\+::initializer\+\_\+list$<$ double $>$ $>$}]{values }\end{DoxyParamCaption})}
+
+
+
+Creates an R x C matrix and allows the values to be defined explicitly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & An R x C list of double values to assign the the matrix. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}\label{classlinea_1_1Matrix_ac1674c721089d29cbcb97e868c95b76b}} 
+\index{linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}!at@{at}}
+\index{at@{at}!linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily template$<$u32 R, u32 C$>$ \\
+double \mbox{\hyperlink{classlinea_1_1Matrix}{linea\+::\+Matrix}}$<$ R, C $>$\+::at (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ u32, u32 $>$ \&}]{indices }\end{DoxyParamCaption}) const}
+
+
+
+Gets a copy of the value at a given entry of the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & An ordered pair of indices (a, b) such that {\ttfamily 0 \texorpdfstring{$<$}{<}= a \texorpdfstring{$<$}{<} R} and {\ttfamily 0 \texorpdfstring{$<$}{<}= B \texorpdfstring{$<$}{<} C}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The entry at M\+\_\+\{a,b\}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlinea_1_1Matrix_aa2bc63f172eb625e355cd02cf99bbf59}\label{classlinea_1_1Matrix_aa2bc63f172eb625e355cd02cf99bbf59}} 
+\index{linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$u32 R, u32 C$>$ \\
+double \& \mbox{\hyperlink{classlinea_1_1Matrix}{linea\+::\+Matrix}}$<$ R, C $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ u32, u32 $>$ \&}]{indices }\end{DoxyParamCaption})}
+
+
+
+Gets the value at a given entry of the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indices} & An ordered pair of indices (a, b) such that {\ttfamily 0 \texorpdfstring{$<$}{<}= a \texorpdfstring{$<$}{<} R} and {\ttfamily 0 \texorpdfstring{$<$}{<}= B \texorpdfstring{$<$}{<} C}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The entry at M\+\_\+\{a,b\}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlinea_1_1Matrix_a653e10cfbd733b5bf5daa9a604bcf12d}\label{classlinea_1_1Matrix_a653e10cfbd733b5bf5daa9a604bcf12d}} 
+\index{linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}!transpose@{transpose}}
+\index{transpose@{transpose}!linea::Matrix$<$ R, C $>$@{linea::Matrix$<$ R, C $>$}}
+\doxysubsubsection{\texorpdfstring{transpose()}{transpose()}}
+{\footnotesize\ttfamily template$<$u32 R, u32 C$>$ \\
+\mbox{\hyperlink{classlinea_1_1Matrix}{Matrix}}$<$ C, R $>$ \mbox{\hyperlink{classlinea_1_1Matrix}{linea\+::\+Matrix}}$<$ R, C $>$\+::transpose}
+
+
+
+Gets the transpose of the matrix. That is, for this matrix M, M.\+transpose() is the matrix N such that for every i,j, $ N_{i,j} = M_{j, i} $. 
+
+\begin{DoxyReturn}{Returns}
+The transpose of the matrix. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/matrix.\+hpp\end{DoxyCompactItemize}
