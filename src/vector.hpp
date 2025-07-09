@@ -26,7 +26,7 @@ namespace linea {
         inline double magnitude() const { 
             auto x = this->get_x();
             auto y = this->get_y();
-            auto z = this->get_y();
+            auto z = this->get_z();
             return std::sqrt(x * x + y * y + z * z);
         }
 
