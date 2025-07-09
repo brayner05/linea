@@ -1,4 +1,0 @@
-<map id="linea::Vector3" name="linea::Vector3">
-<area shape="rect" id="node1" title="Class representing a 3D vector. A sub&#45;class of Matrix&lt;3,1&gt;, allowing for any matrix methods to be cal..." alt="" coords="29,80,140,107"/>
-<area shape="rect" id="node2" href="$classlinea_1_1Matrix.html" title=" " alt="" coords="5,5,164,32"/>
-</map>
